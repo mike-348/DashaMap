@@ -1,20 +1,7 @@
 package com.github.zipcodewilmington;
 
-/**
- * @author xtofer
- * @version 1.0.0
- * @date 10/21/19 9:05 AM
- */
-public class DashaMap implements HashMapX {
-    //an array which are the slots
-    //each array slot contains a linked list
+public class DashaMapTwo implements HashMapX {
 
-
-    //When you create the constructor for each class, you need to create an array of Node objects. Each Node should look
-    //Node:
-    //k: String
-    //v: Integer
-    //next: Node
     class Node {
         String k;
         Integer v;
@@ -28,21 +15,21 @@ public class DashaMap implements HashMapX {
 
     private Node[] map;
     private Integer count;
-    public DashaMap() {
+    public DashaMapTwo() {
         map = new Node[26];
         count = 0;
     }
 
-    private String HashFunctionOne(String input) {
+    private String HashFunctionTwo(String input) {
         if (input.length() > 0) {
-            return String.valueOf(input.charAt(0)).toLowerCase();
+            return String.valueOf(input.charAt(1)).toLowerCase();
         }
         return null;
     }
 
     @Override
     public void set(String key, Integer value) {
-        String first = HashFunctionOne(key);
+        String first = HashFunctionTwo(key);
         char character = first.charAt(0);
         int position = character - 'a';
         Node result = find(map[position], key);
@@ -66,7 +53,7 @@ public class DashaMap implements HashMapX {
 
     @Override
     public void delete(String key) {
-        String first = HashFunctionOne(key);
+        String first = HashFunctionTwo(key);
         char character = first.charAt(0);
         int position = character - 'a';
         Node head = map[position];
@@ -99,7 +86,7 @@ public class DashaMap implements HashMapX {
 
     @Override
     public Integer get(String key) {
-        String first = HashFunctionOne(key);
+        String first = HashFunctionTwo(key);
         char character = first.charAt(0);
         int position = character - 'a';
         Node result = find(map[position], key);
@@ -121,7 +108,7 @@ public class DashaMap implements HashMapX {
 
     @Override
     public Integer bucketSize(String key) {
-        String first = HashFunctionOne(key);
+        String first = HashFunctionTwo(key);
         char character = first.charAt(0);
         int position = character - 'a';
         Node head = map[position];
@@ -137,7 +124,6 @@ public class DashaMap implements HashMapX {
         return bSize;
     }
 
-
     public Node find(Node head, String key) {
         Node current = head;
         while (current != null) {
@@ -148,5 +134,4 @@ public class DashaMap implements HashMapX {
         }
         return null;
     }
-
 }
